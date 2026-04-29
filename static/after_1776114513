@@ -1,0 +1,16 @@
+digraph {
+	fontsize=20 label="After Optimization" labelloc=t
+	subgraph cluster_calculateSum {
+		label="Function: calculateSum"
+		0 [label="func calculateSum\la = 5\lb = 10\lresult = a + b\lreturn result\l"]
+	}
+	subgraph cluster_main {
+		label="Function: main"
+		1 [label="func main\lnum1 = 10\lnum2 = 20\ltotal = num1 + num2\lcall calculateSum\lcall printf\li = 0\lwhile i < 3\l"]
+		2 [label="i = i + 1\lendwhile\l"]
+		3 [label="return total\l"]
+		1 -> 2
+		2 -> 1
+		2 -> 3
+	}
+}

@@ -11,6 +11,7 @@ int main() {
     int num2 = 20;
     int total = num1 + num2;
     calculateSum();
+    printf("Print this!");
     int i = 0;
     while(i < 3) {
         i = i + 1;

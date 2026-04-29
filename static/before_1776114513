@@ -1,0 +1,27 @@
+digraph {
+	fontsize=20 label="Before Optimization" labelloc=t
+	subgraph cluster_calculateSum {
+		label="Function: calculateSum"
+		0 [label="func calculateSum\la = 5\lb = 10\lresult = a + b\lunused1 = 100\lreturn result\l"]
+		1 [label="unreachable1 = 200\l"]
+	}
+	subgraph cluster_unusedFunction {
+		label="Function: unusedFunction"
+		2 [label="func unusedFunction\lx = 50\lreturn x\l"]
+	}
+	subgraph cluster_main {
+		label="Function: main"
+		3 [label="func main\lnum1 = 10\lnum2 = 20\ltotal = num1 + num2\lgarbage = 999\lcall calculateSum\lif 0\l"]
+		4 [label="neverUsed = 500\lendif\l"]
+		5 [label="call printf\li = 0\lwhile i < 3\l"]
+		6 [label="i = i + 1\lendwhile\l"]
+		7 [label="return total\l"]
+		8 [label="afterReturn = 1000\l"]
+		3 -> 4
+		3 -> 5
+		4 -> 5
+		5 -> 6
+		6 -> 5
+		6 -> 7
+	}
+}

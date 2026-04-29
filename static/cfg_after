@@ -1,0 +1,48 @@
+digraph {
+	fontsize=20 label="After Optimization" labelloc=t
+	subgraph cluster_helper_function {
+		label="Function: helper_function"
+		0 [label="func helper_function\la = 10\lb = 20\lresult = a + b\lif 5 > 3\l"]
+		1 [label="result = result + 1\lendif\l"]
+		2 [label="i = 0\lwhile i < 5\l"]
+		3 [label="i = i + 1\lif i == 2\l"]
+		4 [label="break\lendif\l"]
+		5 [label="if i == 3\l"]
+		6 [label="continue\lendif\l"]
+		7 [label="endwhile\l"]
+		8 [label="return result\l"]
+		0 -> 1
+		0 -> 2
+		1 -> 2
+		2 -> 3
+		2 -> 4
+		3 -> 4
+		3 -> 5
+		4 -> 5
+		5 -> 6
+		5 -> 7
+		6 -> 7
+		7 -> 2
+		7 -> 8
+	}
+	subgraph cluster_main {
+		label="Function: main"
+		9 [label="func main\lnum1 = 10\ltotal = helper_function()\lif total > 20\l"]
+		10 [label="total = total + num1\lendif\l"]
+		11 [label="while total < 50\l"]
+		12 [label="total = total + 5\lif total == 35\l"]
+		13 [label="break\lendif\l"]
+		14 [label="endwhile\l"]
+		15 [label="return total\l"]
+		9 -> 10
+		9 -> 11
+		10 -> 11
+		11 -> 12
+		11 -> 13
+		12 -> 13
+		12 -> 14
+		13 -> 14
+		14 -> 11
+		14 -> 15
+	}
+}

@@ -1,0 +1,66 @@
+
+def helper_function():
+    a = 10
+    b = 20
+    result = a + b
+    useless = 999
+
+    if False:
+        dead_branch = 50
+
+    if 5 > 3:
+        result = result + 1
+
+    while False:
+        dead_loop1 = 200
+
+    while 10 < 2:
+        dead_loop2 = 300
+
+    x = 5
+    x = 10
+
+    i = 0
+
+    while i < 5:
+        i = i + 1
+
+        if i == 2:
+            break
+            after_break = 111
+
+        if i == 3:
+            continue
+            after_continue = 222
+
+    return result
+
+    after_return = 500
+
+
+def main():
+    num1 = 10
+    num2 = 20
+
+    total = helper_function()
+
+    if total > 20:
+        total = total + num1
+
+    while total < 50:
+        total = total + 5
+
+        if total == 35:
+            break
+
+    garbage = 777
+
+    if 10 < 2:
+        never_runs = 999
+
+    while 1 and 0:
+        impossible_loop = 123
+
+    return total
+
+    unreachable_main = 1000

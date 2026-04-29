@@ -33,5 +33,11 @@ class Instruction:
 
         if self.inst_type == "ENDWHILE":
             return "endwhile"
+        
+        if self.inst_type == "BREAK":
+            return "break"
+
+        if self.inst_type == "CONTINUE":
+            return "continue"
 
         return self.inst_type

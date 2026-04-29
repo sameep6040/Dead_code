@@ -1,0 +1,78 @@
+digraph {
+	fontsize=20 label="Before Optimization" labelloc=t
+	subgraph cluster_helper_function {
+		label="Function: helper_function"
+		0 [label="func helper_function\la = 10\lb = 20\lresult = a + b\luseless = 999\lif False\l"]
+		1 [label="dead_branch = 50\lendif\l"]
+		2 [label="if 5 > 3\l"]
+		3 [label="result = result + 1\lendif\l"]
+		4 [label="while False\l"]
+		5 [label="dead_loop1 = 200\lendwhile\l"]
+		6 [label="while 10 < 2\l"]
+		7 [label="dead_loop2 = 300\lendwhile\l"]
+		8 [label="x = 5\lx = 10\li = 0\lwhile i < 5\l"]
+		9 [label="i = i + 1\lif i == 2\l"]
+		10 [label="break\lafter_break = 111\lendif\l"]
+		11 [label="if i == 3\l"]
+		12 [label="continue\lafter_continue = 222\lendif\l"]
+		13 [label="endwhile\l"]
+		14 [label="return result\l"]
+		15 [label="after_return = 500\l"]
+		0 -> 1
+		0 -> 2
+		1 -> 2
+		2 -> 3
+		2 -> 4
+		3 -> 4
+		4 -> 5
+		4 -> 6
+		5 -> 4
+		5 -> 6
+		6 -> 7
+		6 -> 8
+		7 -> 6
+		7 -> 8
+		8 -> 9
+		8 -> 10
+		9 -> 10
+		9 -> 11
+		10 -> 11
+		11 -> 12
+		11 -> 13
+		12 -> 13
+		13 -> 8
+		13 -> 14
+	}
+	subgraph cluster_main {
+		label="Function: main"
+		16 [label="func main\lnum1 = 10\lnum2 = 20\ltotal = helper_function()\lif total > 20\l"]
+		17 [label="total = total + num1\lendif\l"]
+		18 [label="while total < 50\l"]
+		19 [label="total = total + 5\lif total == 35\l"]
+		20 [label="break\lendif\l"]
+		21 [label="endwhile\l"]
+		22 [label="garbage = 777\lif 10 < 2\l"]
+		23 [label="never_runs = 999\lendif\l"]
+		24 [label="while 1 and 0\l"]
+		25 [label="impossible_loop = 123\lendwhile\l"]
+		26 [label="return total\l"]
+		27 [label="unreachable_main = 1000\l"]
+		16 -> 17
+		16 -> 18
+		17 -> 18
+		18 -> 19
+		18 -> 20
+		19 -> 20
+		19 -> 21
+		20 -> 21
+		21 -> 18
+		21 -> 22
+		22 -> 23
+		22 -> 24
+		23 -> 24
+		24 -> 25
+		24 -> 26
+		25 -> 24
+		25 -> 26
+	}
+}
